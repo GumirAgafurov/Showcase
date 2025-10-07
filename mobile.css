@@ -1,4 +1,4 @@
-/* Мобильная версия */
+
 @media (max-width: 768px) {
     body {
         padding: 20px;
@@ -36,7 +36,7 @@
         font-size: 14px;
     }
 
-    /* Стили для надписи "продолжение следует" */
+
     .continuation-message {
         display: none;
         position: fixed;
@@ -61,4 +61,5 @@
         80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
     }
+
 }
