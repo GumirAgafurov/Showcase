@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="mobile.css">
+    <style>
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body
+{
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background: #131313;
+ position: relative;
+}
+.container
+{
+    display:flex;
+    gap:100px;
+}
+
+.container .box
+{
+position: relative;
+width: 300px;
+height: 420px;
+background: #232323;
+border-radius: 50px;
+overflow: hidden;
+cursor: pointer; 
+            transition: transform 0.3s ease; 
+
+}
+.container .box::before
+{
+    content:"";
+     position: absolute;
+     top:var(--y);
+     left: var(--x);
+     transform: translate(-50%, -50%);
+     width: 0;
+     height: 0;
+     border-radius: 50%;
+     background: #9bdc28;
+     transition: 0.5s, top 0s, left 0s;
+}
+
+.container .box:hover::before
+{
+    width: 1100px;
+    height: 1100px;
+}
+        .box .text {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 100%;
+ 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        
+            z-index: 2;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.2s;
+        }
+        .box:hover .text {
+            opacity: 1;
+        }
+
+          .red-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+        }
+
+        .red-button:hover {
+            background: #ff3333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+        }
+
+        .red-button:active {
+            transform: translateY(0);
+            background: #ff2222;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+     <button class="red-button" onclick="handleButtonClick()">Кнопка</button>
+      <div class="box" data-target="first">
+        <div class="text" >Гитхаб</div>
+    </div>
+    <div class="box"  data-target="second">
+        <div class="text">Линкедин</div>
+    </div>
+      <script>
+        let box = document.querySelectorAll(".box");
+  box.forEach(box => {
+    box.addEventListener('mousemove', function(e) {
+        let x = e.pageX - box.offsetLeft;
+        let y = e.pageY - box.offsetTop;
+        box.style.setProperty("--x", x + "px");
+        box.style.setProperty("--y", y + "px");
+    });
+});
+
+   box.forEach(box => {
+        box.addEventListener('click', function(e) {
+            const target = this.getAttribute('data-target');
+            
+            switch(target) {
+                case 'first':
+                     window.open('https://github.com/GumirAgafurov', '_blank'); 
+                    break;
+                case 'second':
+                    window.open('https://www.linkedin.com/', '_blank');
+                    break;
+            }
+
+            this.style.background = '#9bdc28';
+            setTimeout(() => {
+                this.style.background = '#232323'; 
+            }, 300);
+        });
+    });
+   function handleButtonClick() {
+    // Проверяем мобильное устройство
+    if (window.innerWidth <= 768) {
+        showContinuationMessage();
+    } else {
+        alert('Красная кнопка нажата!');
+    }
+}
+
+// Функция показа надписи "продолжение следует"
+function showContinuationMessage() {
+    // Создаем элемент если его нет
+    let message = document.querySelector('.continuation-message');
+    if (!message) {
+        message = document.createElement('div');
+        message.className = 'continuation-message';
+        message.textContent = 'Продолжение следует...';
+        document.body.appendChild(message);
+    }
+    
+    // Показываем сообщение
+    message.style.display = 'block';
+    
+    // Скрываем через 3 секунды
+    setTimeout(() => {
+        message.style.display = 'none';
+    }, 3000);
+}
+      </script>
+</div>
+</body>
+</html>
