@@ -155,7 +155,7 @@ cursor: pointer;
         });
     });
    function handleButtonClick() {
-    // Проверяем мобильное устройство
+
     if (window.innerWidth <= 768) {
         showContinuationMessage();
     } else {
@@ -163,9 +163,9 @@ cursor: pointer;
     }
 }
 
-// Функция показа надписи "продолжение следует"
+
 function showContinuationMessage() {
-    // Создаем элемент если его нет
+
     let message = document.querySelector('.continuation-message');
     if (!message) {
         message = document.createElement('div');
@@ -174,10 +174,10 @@ function showContinuationMessage() {
         document.body.appendChild(message);
     }
     
-    // Показываем сообщение
+
     message.style.display = 'block';
     
-    // Скрываем через 3 секунды
+
     setTimeout(() => {
         message.style.display = 'none';
     }, 3000);
@@ -186,3 +186,4 @@ function showContinuationMessage() {
 </div>
 </body>
 </html>
+
